@@ -1,0 +1,52 @@
+{
+  "comment": "Fortress PIM role settings. Apply via Entra ID portal or PIM REST API.",
+  "settings": [
+    {
+      "roleName": "Global Administrator",
+      "maxActivationDurationHours": 1,
+      "requireApproval": true,
+      "requireJustification": true,
+      "requireMFA": true,
+      "requireTicketInfo": false,
+      "notifyAdmin": true,
+      "approvers": ["<TODO: Security Administrator group or user object ID>"]
+    },
+    {
+      "roleName": "Security Administrator",
+      "maxActivationDurationHours": 4,
+      "requireApproval": false,
+      "requireJustification": true,
+      "requireMFA": true,
+      "requireTicketInfo": false,
+      "notifyAdmin": true
+    },
+    {
+      "roleName": "Exchange Administrator",
+      "maxActivationDurationHours": 4,
+      "requireApproval": false,
+      "requireJustification": true,
+      "requireMFA": true,
+      "requireTicketInfo": false,
+      "notifyAdmin": true
+    },
+    {
+      "roleName": "User Access Administrator",
+      "maxActivationDurationHours": 2,
+      "requireApproval": true,
+      "requireJustification": true,
+      "requireMFA": true,
+      "requireTicketInfo": false,
+      "notifyAdmin": true,
+      "approvers": ["<TODO: Security Administrator group or user object ID>"]
+    },
+    {
+      "roleName": "SharePoint Administrator",
+      "maxActivationDurationHours": 4,
+      "requireApproval": false,
+      "requireJustification": true,
+      "requireMFA": true,
+      "requireTicketInfo": false,
+      "notifyAdmin": true
+    }
+  ]
+}

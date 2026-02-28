@@ -1,0 +1,114 @@
+[
+  {
+    "displayName": "CA001 - All Users - Require MFA",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "users": {
+        "includeUsers": ["All"],
+        "excludeUsers": [],
+        "excludeGroups": ["<TODO: Break-glass group ID>"]
+      },
+      "applications": {
+        "includeApplications": ["All"]
+      },
+      "clientAppTypes": ["all"]
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": ["mfa"]
+    }
+  },
+  {
+    "displayName": "CA002 - Admin Roles - Require Phishing-Resistant MFA",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "users": {
+        "includeRoles": [
+          "<TODO: Global Administrator role ID>",
+          "<TODO: Security Administrator role ID>",
+          "<TODO: Exchange Administrator role ID>",
+          "<TODO: Privileged Role Administrator role ID>"
+        ],
+        "excludeUsers": ["<TODO: Break-glass account object ID>"]
+      },
+      "applications": {
+        "includeApplications": ["All"]
+      },
+      "clientAppTypes": ["all"]
+    },
+    "grantControls": {
+      "operator": "OR",
+      "authenticationStrength": {
+        "id": "<TODO: Phishing-resistant MFA authentication strength policy ID>"
+      }
+    }
+  },
+  {
+    "displayName": "CA003 - All Users - Block Legacy Authentication",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "users": {
+        "includeUsers": ["All"],
+        "excludeGroups": ["<TODO: Break-glass group ID>"]
+      },
+      "applications": {
+        "includeApplications": ["All"]
+      },
+      "clientAppTypes": [
+        "exchangeActiveSync",
+        "other"
+      ]
+    },
+    "grantControls": {
+      "operator": "OR",
+      "builtInControls": ["block"]
+    }
+  },
+  {
+    "displayName": "CA004 - High Risk Sign-In - Force Reauthentication",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "users": {
+        "includeUsers": ["All"],
+        "excludeGroups": ["<TODO: Break-glass group ID>"]
+      },
+      "applications": {
+        "includeApplications": ["All"]
+      },
+      "signInRiskLevels": ["high", "medium"],
+      "clientAppTypes": ["all"]
+    },
+    "grantControls": {
+      "operator": "AND",
+      "builtInControls": ["mfa", "passwordChange"]
+    }
+  },
+  {
+    "displayName": "CA005 - Unmanaged Devices - App Enforced Restrictions",
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+      "users": {
+        "includeUsers": ["All"],
+        "excludeGroups": ["<TODO: Break-glass group ID>"]
+      },
+      "applications": {
+        "includeApplications": [
+          "00000002-0000-0ff1-ce00-000000000000",
+          "00000003-0000-0ff1-ce00-000000000000"
+        ]
+      },
+      "devices": {
+        "deviceFilter": {
+          "mode": "exclude",
+          "rule": "device.isCompliant -eq True -or device.trustType -eq \"ServerAD\""
+        }
+      },
+      "clientAppTypes": ["all"]
+    },
+    "sessionControls": {
+      "applicationEnforcedRestrictions": {
+        "isEnabled": true
+      }
+    }
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "comment": "Intune Windows compliance policy for Fortress-managed devices.",
+  "displayName": "Fortress - Windows Compliance Baseline",
+  "description": "CIS-aligned compliance policy for Windows 11 endpoints.",
+  "platformType": "Windows10AndLater",
+  "settings": {
+    "deviceHealthSettings": {
+      "requireBitLocker": true,
+      "requireSecureBoot": true,
+      "requireCodeIntegrity": true
+    },
+    "osMinimumVersion": "10.0.22621",
+    "passwordRequired": true,
+    "passwordMinimumLength": 12,
+    "passwordRequiredType": "alphanumericWithSymbols",
+    "passwordExpirationDays": 365,
+    "passwordPreviousPasswordBlockCount": 5,
+    "passwordMinutesOfInactivityBeforeLock": 15,
+    "storageRequireEncryption": true,
+    "antivirusRequired": true,
+    "antispywareRequired": true,
+    "firewallRequired": true,
+    "defenderEnabled": true,
+    "rtpEnabled": true,
+    "activeFirewallRequired": true,
+    "comment_nonCompliantAction": "Mark non-compliant after 1 day. Block access after 5 days."
+  }
+}
